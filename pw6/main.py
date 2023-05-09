@@ -36,7 +36,6 @@ class main:
             self.conn = sqlite3.connect(self.dbfile)
             self.db   = self.conn.cursor()
             # creating the tables
-            #self.db.execute("CREATE TABLE IF NOT EXISTS domains (id INTEGER PRIMARY KEY AUTOINCREMENT, domain TEXT)")
             self.db.execute("CREATE TABLE IF NOT EXISTS emails (id INTEGER PRIMARY KEY AUTOINCREMENT, email_address TEXT, domain_name TEXT, date TEXT, added_at DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(domain_name) REFERENCES domains(domain_name))")
             self.db.execute("CREATE TABLE IF NOT EXISTS domains (id INTEGER PRIMARY KEY AUTOINCREMENT, domain_name TEXT, added_at DATETIME DEFAULT CURRENT_TIMESTAMP)")
             self.db.execute("CREATE TABLE IF NOT EXISTS spam_levels (id INTEGER PRIMARY KEY AUTOINCREMENT, spam_confidence INTEGER, email TEXT, added_at DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(email) REFERENCES emails(email_address))")
